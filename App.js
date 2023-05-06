@@ -46,6 +46,8 @@ export default function App() {
             name="Register"
             component={RegisterPage}
             options={{
+              headerShown: false,
+
               headerStyle: {
                 backgroundColor: "#2B2B2B",
                 height: 100,
@@ -62,6 +64,8 @@ export default function App() {
             name="PersonalDetailPage"
             component={PersonalDetailPage}
             options={{
+              headerShown: false,
+
               headerStyle: {
                 backgroundColor: "#2B2B2B",
                 height: 100,
@@ -78,6 +82,8 @@ export default function App() {
             name="SetGoalPage"
             component={SetGoalPage}
             options={{
+              headerShown: false,
+
               headerStyle: {
                 backgroundColor: "#2B2B2B",
                 height: 100,
