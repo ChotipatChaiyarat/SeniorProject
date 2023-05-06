@@ -8,12 +8,12 @@ import {
 } from "react-native";
 import React, { useState } from "react";
 import axios from "axios";
-import ProgressCircle from 'react-native-progress-circle'
+import ProgressCircle from "react-native-progress-circle";
 import { useNavigation } from "@react-navigation/native";
 //   import Volume from "./Volume";
 //   import { render } from "react-native/Libraries/Renderer/implementations/ReactNativeRenderer-prod";
 
-const THINGSPEAK_API_KEY = "IYKOBVGP6C4LAHU3";
+const THINGSPEAK_API_KEY = "OJIMVVEWZSOFHMWG";
 const CHANNEL_ID = "2075755";
 const FIELD_ID = "2";
 
@@ -31,22 +31,20 @@ function MainPage() {
 
   return (
     <View style={styles.container}>
-
       <Text style={styles.numbers}>Win's Bottle</Text>
       <View></View>
       <View>
         <View style={{ margin: 30 }}>
-        <ProgressCircle
-            percent={20}
+          <ProgressCircle
+            percent={80}
             radius={150}
             borderWidth={20}
             color="#3399FF"
             shadowColor="#999"
             bgColor="#fff"
-        >
-        <Text style={{ fontSize: 18 }}>{waterLevel+' / 750 mL'}</Text>
-        </ProgressCircle>
-          
+          >
+            <Text style={{ fontSize: 18 }}>{waterLevel + " / 750 mL"}</Text>
+          </ProgressCircle>
         </View>
       </View>
       {/* {data.map((feed) => (
@@ -86,7 +84,7 @@ function MainPage() {
 temp = 100;
 const updateThingSpeak = () => {
   const url =
-    `https://api.thingspeak.com/update?api_key=IYKOBVGP6C4LAHU3&field2=` + temp;
+    `https://api.thingspeak.com/update?api_key=OJIMVVEWZSOFHMWG&field2=` + temp;
   temp = temp + 1;
   axios
     .post(url)
