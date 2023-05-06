@@ -141,8 +141,8 @@ const lightUpdateThingSpeak = () => {
 temp2 = 100;
 const buzzerUpdateThingSpeak = () => {
   const url =
-    `https://api.thingspeak.com/update?api_key=OJIMVVEWZSOFHMWG&field2=` + temp;
-  temp2 = temp2 + 1;
+    `https://api.thingspeak.com/update?api_key=OJIMVVEWZSOFHMWG&field3=` + temp2;
+ temp2 = temp2 + 1;
   axios
     .post(url)
     .then((response) => {
