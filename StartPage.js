@@ -22,6 +22,8 @@ const app = initializeApp(firebaseConfig);
 // Initialize Firebase Authentication and get a reference to the service
 const auth = getAuth(app);
 
+const backgroundImage = require("./night2.jpeg"); // replace with the path to your image
+
 import React, { useState } from "react";
 import { useNavigation } from "@react-navigation/native";
 import {
@@ -30,6 +32,8 @@ import {
   TextInput,
   TouchableOpacity,
   View,
+  Image,
+  ImageBackground,
 } from "react-native";
 
 const StartPage = () => {
@@ -64,48 +68,68 @@ const StartPage = () => {
   };
 
   return (
-    <View style={styles.loginContainer}>
-      <View style={styles.inputContainer}>
-        <Text style={styles.inputLabel}>Email</Text>
-        <TextInput
-          style={[styles.input, { width: 200 }]}
-          placeholder="Email"
-          value={email}
-          onChangeText={handleEmailChange}
+    <View style={styles.container}>
+      <ImageBackground source={backgroundImage} style={styles.backgroundImage}>
+        <Image
+          source={require("./2.png")}
+          style={{ width: 150, height: 192 }}
         />
-      </View>
-      <View style={styles.inputContainer}>
-        <Text style={styles.inputLabel}>Password</Text>
-        <TextInput
-          style={[styles.input, { width: 200 }]}
-          placeholder="Enter your password"
-          value={password}
-          onChangeText={handlePasswordChange}
-          secureTextEntry={true}
-        />
-      </View>
-      <TouchableOpacity style={styles.button} onPress={handleLoginPress}>
-        <Text style={styles.buttonText}>Login</Text>
-      </TouchableOpacity>
-      <TouchableOpacity onPress={handleRegisterPress}>
-        <Text style={styles.registerText}>
-          Don't have an account? Register now
-        </Text>
-      </TouchableOpacity>
+
+        <View style={styles.inputContainer}>
+          <Text style={styles.inputLabel}>Email</Text>
+          <TextInput
+            style={[styles.input, { width: 300 }]}
+            placeholder="Email"
+            value={email}
+            onChangeText={handleEmailChange}
+          />
+        </View>
+
+        <View style={styles.inputContainer}>
+          <Text style={styles.inputLabel}>Password</Text>
+          <TextInput
+            style={[styles.input, { width: 300 }]}
+            placeholder="Enter your password"
+            value={password}
+            onChangeText={handlePasswordChange}
+            secureTextEntry={true}
+          />
+        </View>
+        <TouchableOpacity style={styles.button} onPress={handleLoginPress}>
+          <Text style={styles.buttonText}>Login</Text>
+        </TouchableOpacity>
+        <TouchableOpacity onPress={handleRegisterPress}>
+          <Text style={styles.registerText}>
+            Don't have an account?{" "}
+            <Text style={{ color: "white", fontWeight: "bold" }}>
+              Register now
+            </Text>
+          </Text>
+        </TouchableOpacity>
+      </ImageBackground>
     </View>
   );
 };
 
 const styles = StyleSheet.create({
+  backgroundImage: {
+    flex: 1,
+    width: "100%",
+    alignItems: "center",
+    justifyContent: "center",
+    zIndex: -99,
+    resizeMode: "cover", // or "stretch" to stretch the image
+  },
+
   container: {
     flex: 1,
-    backgroundColor: "#fff",
+    backgroundColor: "#2B2B2B",
     alignItems: "center",
     justifyContent: "center",
   },
-  loginContainer: {
-    alignItems: "center",
-    marginTop: 100,
+  inputLabel: {
+    color: "white",
+    fontWeight: "bold",
   },
   loginLabel: {
     fontSize: 24,
@@ -113,22 +137,31 @@ const styles = StyleSheet.create({
     marginBottom: 24,
   },
   input: {
+    backgroundColor: "#fff",
     width: "80%",
     height: 48,
     marginVertical: 8,
     borderWidth: 1,
     borderColor: "#ccc",
-    borderRadius: 8,
+    borderRadius: 20,
     paddingHorizontal: 16,
   },
   button: {
-    backgroundColor: "#007AFF",
-    width: "80%",
+    backgroundColor: "#3273c1",
+    width: 300,
     height: 48,
-    borderRadius: 8,
+    borderRadius: 20,
     alignItems: "center",
     justifyContent: "center",
-    marginTop: 16,
+    marginTop: 50,
+    elevation: 8, // controls the shadow depth
+    shadowColor: "#4A90E2", // controls the shadow color
+    shadowOpacity: 0.8,
+    shadowRadius: 8,
+    shadowOffset: {
+      width: 0,
+      height: 0,
+    },
   },
   buttonText: {
     color: "#fff",
