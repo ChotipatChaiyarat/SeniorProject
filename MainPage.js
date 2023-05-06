@@ -114,7 +114,7 @@ function MainPage() {
           <TouchableOpacity
             style={[styles.button, styles.firstButton]}
             title="Self-cleaning"
-            onPress={updateThingSpeak}
+            onPress={lightUpdateThingSpeak}
           >
             <Text style={styles.buttonText}>Self-cleaning</Text>
           </TouchableOpacity>
@@ -122,7 +122,7 @@ function MainPage() {
           <TouchableOpacity
             style={styles.button}
             title="FindBottle"
-            onPress={testClick}
+            onPress={buzzerUpdateThingSpeak}
           >
             <Text style={styles.buttonText}>Find My Bottle</Text>
           </TouchableOpacity>
@@ -185,8 +185,9 @@ const lightUpdateThingSpeak = () => {
 temp2 = 100;
 const buzzerUpdateThingSpeak = () => {
   const url =
-    `https://api.thingspeak.com/update?api_key=OJIMVVEWZSOFHMWG&field3=` + temp2;
- temp2 = temp2 + 1;
+    `https://api.thingspeak.com/update?api_key=OJIMVVEWZSOFHMWG&field3=` +
+    temp2;
+  temp2 = temp2 + 1;
   axios
     .post(url)
     .then((response) => {
