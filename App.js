@@ -123,7 +123,7 @@ export default function App() {
 }
 
 function testClick() {
-  console.log("press");
+  console.log("press hhadsh");
 }
 
 const styles = StyleSheet.create({
