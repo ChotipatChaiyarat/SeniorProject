@@ -167,13 +167,30 @@ function MainPage() {
   );
 }
 temp = 100;
-const updateThingSpeak = () => {
+const lightUpdateThingSpeak = () => {
   const url =
     `https://api.thingspeak.com/update?api_key=OJIMVVEWZSOFHMWG&field2=` + temp;
   temp = temp + 1;
   axios
     .post(url)
     .then((response) => {
+      console.log(temp - 1);
+      console.log("ThingSpeak update successful");
+    })
+    .catch((error) => {
+      console.log("ThingSpeak update failed: ", error);
+    });
+};
+
+temp2 = 100;
+const buzzerUpdateThingSpeak = () => {
+  const url =
+    `https://api.thingspeak.com/update?api_key=OJIMVVEWZSOFHMWG&field3=` + temp2;
+ temp2 = temp2 + 1;
+  axios
+    .post(url)
+    .then((response) => {
+      console.log(temp2 - 1);
       console.log("ThingSpeak update successful");
     })
     .catch((error) => {
