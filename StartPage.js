@@ -169,7 +169,7 @@ const styles = StyleSheet.create({
     fontSize: 16,
   },
   registerText: {
-    color: "#007AFF",
+    color: "#3273c1",
     marginTop: 16,
   },
 });

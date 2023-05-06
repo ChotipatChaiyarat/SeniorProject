@@ -31,7 +31,8 @@ function MainPage() {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.numbers}>Win's Bottle</Text>
+      <Text style={styles.welcome}>Welcome Back!</Text>
+
       <View></View>
       <View>
         <View style={{ margin: 30 }}>
@@ -114,6 +115,11 @@ const styles = StyleSheet.create({
     // position: "absolute",
     alignItems: "center",
     justifyContent: "center",
+  },
+  welcome: {
+    fontSize: 20,
+    color: "white",
+    fontWeight: "bold",
   },
   numbers: {
     fontSize: 30,

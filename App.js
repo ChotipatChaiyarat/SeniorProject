@@ -1,5 +1,5 @@
 // import { StatusBar } from "expo-status-bar";
-import { StyleSheet, Text, View, Button, ImageBackground } from "react-native";
+import { StyleSheet, Text, View, Button } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import { NavigationContainer } from "@react-navigation/native";
@@ -99,7 +99,7 @@ export default function App() {
               headerTitleStyle: {
                 fontSize: 41,
               },
-              headerTitle: "Aqualink", // set headerTitle to "Aqualink"
+              headerTitle: "", // set headerTitle to "Aqualink"
             }}
           />
 
