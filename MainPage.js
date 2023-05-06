@@ -8,7 +8,7 @@ import {
 } from "react-native";
 import React, { useState } from "react";
 import axios from "axios";
-//   import CircularProgress from "react-native-circular-progress-indicator";
+import ProgressCircle from 'react-native-progress-circle'
 import { useNavigation } from "@react-navigation/native";
 //   import Volume from "./Volume";
 //   import { render } from "react-native/Libraries/Renderer/implementations/ReactNativeRenderer-prod";
@@ -29,36 +29,24 @@ function MainPage() {
     navigation.navigate("Statistic");
   };
 
-  // const [data, setData] = useState([]);
-
-  // useEffect(() => {
-  //   const url =
-  //     "https://api.thingspeak.com/channels/2075755/fields/1.json?api_key=S0V3XE45CSH0MGXH&results=2";
-
-  //   const interval = setInterval(() => {
-  //     axios
-  //       .get(url)
-  //       .then((response) => {
-  //         setData(response.data.feeds);
-  //       })
-  //       .catch((error) => {
-  //         console.log(error);
-  //       });
-  //   }, 1000); // set the interval time to 10 minutes
-
-  //   return () => clearInterval(interval); // clear the interval on component unmount
-  // }, []);
-
   return (
     <View style={styles.container}>
+
       <Text style={styles.numbers}>Win's Bottle</Text>
       <View></View>
       <View>
         <View style={{ margin: 30 }}>
-          <View style={styles.circle}>
-            <Text style={styles.waterLevelText}>{waterLevel}</Text>
-            <Text style={styles.totalVolume}>/ 750 mL</Text>
-          </View>
+        <ProgressCircle
+            percent={20}
+            radius={150}
+            borderWidth={20}
+            color="#3399FF"
+            shadowColor="#999"
+            bgColor="#fff"
+        >
+        <Text style={{ fontSize: 18 }}>{waterLevel+' / 750 mL'}</Text>
+        </ProgressCircle>
+          
         </View>
       </View>
       {/* {data.map((feed) => (
@@ -95,33 +83,6 @@ function MainPage() {
     </View>
   );
 }
-// const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
-
-// const updateThingSpeak = async (event) => {
-//   const url = `https://api.thingspeak.com/update?api_key=IYKOBVGP6C4LAHU3&field2=100`;
-//   const url2 = `https://api.thingspeak.com/update?api_key=IYKOBVGP6C4LAHU3&field2=200`;
-
-//   axios
-//     .post(url)
-//     .then((response) => {
-//       console.log("ThingSpeak update successful");
-//     })
-//     .catch((error) => {
-//       console.log("ThingSpeak update failed: ", error);
-//     });
-
-//   await delay(40000);
-
-//   axios
-//     .post(url2)
-//     .then((response) => {
-//       console.log("ThingSpeak update successful2");
-//       console.log(url2);
-//     })
-//     .catch((error) => {
-//       console.log("ThingSpeak update failed: ", error);
-//     });
-// };
 temp = 100;
 const updateThingSpeak = () => {
   const url =
@@ -147,16 +108,6 @@ const styles = StyleSheet.create({
     backgroundColor: "#2B2B2B",
     alignItems: "center",
     justifyContent: "center",
-  },
-  circle: {
-    width: 250,
-    height: 250,
-    borderRadius: 250 / 2,
-    backgroundColor: "blue",
-    alignItems: "center",
-    justifyContent: "center",
-    borderColor: "red",
-    borderWidth: 5,
   },
   waterLevelText: {
     fontSize: 70,
