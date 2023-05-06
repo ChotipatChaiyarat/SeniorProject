@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import { useNavigation } from "@react-navigation/native";
+import RadioButtonGroup, { RadioButtonItem } from "expo-radio-button";
+
 import {
   StyleSheet,
   Text,
@@ -9,6 +11,8 @@ import {
   Platform,
   DatePickerIOS,
   DatePickerAndroid,
+  ImageBackground,
+  ScrollView,
 } from "react-native";
 
 const PersonalDetailPage = () => {
@@ -21,6 +25,10 @@ const PersonalDetailPage = () => {
   const [sex, setSex] = useState("");
   const [weight, setWeight] = useState("");
   const [height, setHeight] = useState("");
+
+  const [current, setCurrent] = useState("test");
+
+  const backgroundImage = require("./night2.jpeg"); // replace with the path to your image
 
   const handleFirstNameChange = (text) => {
     setFirstName(text);
@@ -62,11 +70,15 @@ const PersonalDetailPage = () => {
 
   const showIOSDatePicker = () => {
     return (
-      <DatePickerIOS
-        date={dateOfBirth}
-        onDateChange={handleDateChange}
-        mode="date"
-      />
+      <View style={{ backgroundColor: "white", borderRadius: 20 }}>
+        <DatePickerIOS
+          date={dateOfBirth}
+          onDateChange={handleDateChange}
+          mode="date"
+          locale="en"
+          textColor="white"
+        />
+      </View>
     );
   };
 
@@ -86,87 +98,114 @@ const PersonalDetailPage = () => {
 
   const handleNextPress = () => {
     console.log("next press");
-    navigation.navigate("SetGoalPage");
+    navigation.navigate("SetGoalPage", { weight: weight, height: height });
   };
 
   return (
     <View style={styles.container}>
-      <Text style={styles.label}>Personal Details</Text>
-      <View style={styles.inputContainer}>
-        <Text style={styles.inputLabel}>First Name</Text>
-        <TextInput
-          style={styles.input}
-          placeholder="First Name"
-          value={firstName}
-          onChangeText={handleFirstNameChange}
-        />
-      </View>
-      <View style={styles.inputContainer}>
-        <Text style={styles.inputLabel}>Last Name</Text>
-        <TextInput
-          style={styles.input}
-          placeholder="Last Name"
-          value={lastName}
-          onChangeText={handleLastNameChange}
-        />
-      </View>
-      <View style={styles.inputContainer}>
-        <Text style={styles.inputLabel}>Date of Birth</Text>
-        {showDatePicker()}
-      </View>
-      <View style={styles.inputContainer}>
-        <Text style={styles.inputLabel}>Sex</Text>
-        <View style={styles.radioContainer}>
-          <TouchableOpacity
-            style={styles.radio}
-            onPress={() => handleSexChange("Male")}
-          >
-            <Text style={styles.radioText}>Male</Text>
-            {sex === "Male" && <View style={styles.radioDot} />}
-          </TouchableOpacity>
-          <TouchableOpacity
-            style={styles.radio}
-            onPress={() => handleSexChange("Female")}
-          >
-            <Text style={styles.radioText}>Female</Text>
-            {sex === "Female" && <View style={styles.radioDot} />}
-          </TouchableOpacity>
-        </View>
-      </View>
-      <View style={styles.inputContainer}>
-        <Text style={styles.inputLabel}>Weight (kg)</Text>
-        <TextInput
-          style={styles.input}
-          placeholder="Enter your weight"
-          value={weight}
-          onChangeText={handleWeightChange}
-          keyboardType="numeric"
-        />
-      </View>
-      <View style={styles.inputContainer}>
-        <Text style={styles.inputLabel}>Height (cm)</Text>
-        <TextInput
-          style={styles.input}
-          placeholder="Enter your height"
-          value={height}
-          onChangeText={handleHeightChange}
-          keyboardType="numeric"
-        />
-        <TouchableOpacity style={styles.button} onPress={handleNextPress}>
-          <Text style={styles.buttonText}>Next</Text>
-        </TouchableOpacity>
-      </View>
+      <ImageBackground source={backgroundImage} style={styles.backgroundImage}>
+        <ScrollView style={styles.container2}>
+          <View style={{ justifyContent: "center", alignItems: "center" }}>
+            <Text style={styles.header}>Finishing Up!</Text>
+            <Text style={styles.subheader}>Let us get to know you better</Text>
+
+            <View style={styles.inputContainer}>
+              <Text style={styles.inputLabel}>First Name</Text>
+              <TextInput
+                style={styles.input}
+                placeholder="First Name"
+                value={firstName}
+                onChangeText={handleFirstNameChange}
+              />
+            </View>
+            <View style={styles.inputContainer}>
+              <Text style={styles.inputLabel}>Last Name</Text>
+              <TextInput
+                style={styles.input}
+                placeholder="Last Name"
+                value={lastName}
+                onChangeText={handleLastNameChange}
+              />
+            </View>
+            <View style={styles.inputContainer}>
+              <Text style={styles.inputLabel}>Date of Birth</Text>
+              {showDatePicker()}
+            </View>
+            <View style={styles.inputContainer}>
+              <Text style={styles.inputLabel2}>Sex</Text>
+            </View>
+            <RadioButtonGroup
+              containerStyle={{
+                marginBottom: 25,
+
+                flexDirection: "row",
+                alignSelf: "left",
+                position: "relative",
+                left: 40,
+              }}
+              selected={sex}
+              onSelected={(value) => setSex(value)}
+              radioBackground="white"
+            >
+              <RadioButtonItem
+                value="Male"
+                label={
+                  <Text style={{ color: "white", paddingRight: 50 }}>Male</Text>
+                }
+              />
+              <RadioButtonItem
+                value="Female"
+                label={<Text style={{ color: "white" }}>Female</Text>}
+              />
+            </RadioButtonGroup>
+            <View style={styles.inputContainer}>
+              <Text style={styles.inputLabel}>Weight (kg)</Text>
+              <TextInput
+                style={styles.input}
+                placeholder="Enter your weight"
+                value={weight}
+                onChangeText={handleWeightChange}
+                keyboardType="numeric"
+              />
+            </View>
+            <View style={styles.inputContainer}>
+              <Text style={styles.inputLabel}>Height (cm)</Text>
+              <TextInput
+                style={styles.input}
+                placeholder="Enter your height"
+                value={height}
+                onChangeText={handleHeightChange}
+                keyboardType="numeric"
+              />
+              <TouchableOpacity style={styles.button} onPress={handleNextPress}>
+                <Text style={styles.buttonText}>Next</Text>
+              </TouchableOpacity>
+            </View>
+          </View>
+        </ScrollView>
+      </ImageBackground>
     </View>
   );
 };
 
 const styles = StyleSheet.create({
+  backgroundImage: {
+    flex: 1,
+    width: "100%",
+    alignItems: "center",
+    justifyContent: "center",
+    zIndex: -99,
+    resizeMode: "cover", // or "stretch" to stretch the image
+  },
   container: {
     flex: 1,
     backgroundColor: "#fff",
     alignItems: "center",
     justifyContent: "center",
-    padding: 24,
+  },
+  container2: {
+    backgroundColor: "transparent",
+    width: "100%",
   },
   title: {
     fontSize: 24,
@@ -174,19 +213,28 @@ const styles = StyleSheet.create({
     marginBottom: 24,
   },
   inputContainer: {
-    width: "100%",
+    width: "80%",
     marginBottom: 16,
   },
   inputLabel: {
+    fontSize: 16,
+    color: "#fff",
     fontWeight: "bold",
-    marginBottom: 8,
+    marginBottom: 10,
+  },
+  inputLabel2: {
+    fontSize: 16,
+    color: "#fff",
+    fontWeight: "bold",
   },
   input: {
+    backgroundColor: "#fff",
+    width: "100%",
+    height: 48,
     borderWidth: 1,
     borderColor: "#ccc",
-    borderRadius: 8,
+    borderRadius: 20,
     paddingHorizontal: 16,
-    height: 48,
   },
   radioContainer: {
     flexDirection: "row",
@@ -203,18 +251,42 @@ const styles = StyleSheet.create({
     marginTop: 32,
   },
   button: {
-    backgroundColor: "#007AFF",
+    backgroundColor: "#3273c1",
     width: "100%",
     height: 48,
-    borderRadius: 8,
+    borderRadius: 20,
     alignItems: "center",
     justifyContent: "center",
-    marginTop: 16,
+    marginTop: 40,
+    elevation: 8, // controls the shadow depth
+    shadowColor: "#4A90E2", // controls the shadow color
+    shadowOpacity: 0.8,
+    shadowRadius: 8,
+    shadowOffset: {
+      width: 0,
+      height: 0,
+    },
   },
   buttonText: {
     color: "#fff",
     fontWeight: "bold",
     fontSize: 16,
+  },
+  header: {
+    color: "#fff",
+    fontWeight: "bold",
+    fontSize: 30,
+    paddingTop: "20%",
+  },
+  subheader: {
+    color: "#fff",
+    fontWeight: "bold",
+    fontSize: 15,
+    padding: "5%",
+    alignSelf: "left",
+    position: "relative",
+    left: 20,
+    color: "rgba(255,255,255,0.8)",
   },
 });
 

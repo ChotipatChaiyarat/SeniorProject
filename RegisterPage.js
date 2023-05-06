@@ -24,6 +24,8 @@ const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const db = getFirestore();
 
+const backgroundImage = require("./night2.jpeg"); // replace with the path to your image
+
 import React, { useState } from "react";
 import { useNavigation } from "@react-navigation/native";
 import {
@@ -32,6 +34,8 @@ import {
   TextInput,
   TouchableOpacity,
   View,
+  ImageBackground,
+  Image,
 } from "react-native";
 
 const RegisterPage = () => {
@@ -81,52 +85,82 @@ const RegisterPage = () => {
   };
 
   return (
-    <View style={styles.registerContainer}>
-      <Text style={styles.registerLabel}>Register</Text>
-      <View style={styles.inputContainer}>
-        <Text style={styles.inputLabel}>Email</Text>
-        <TextInput
-          style={styles.input}
-          placeholder="Email"
-          value={email}
-          onChangeText={handleEmailChange}
-        />
-      </View>
-      <View style={styles.inputContainer}>
-        <Text style={styles.inputLabel}>Password</Text>
-        <TextInput
-          style={styles.input}
-          placeholder="Enter your password"
-          value={password}
-          onChangeText={handlePasswordChange}
-          secureTextEntry={true}
-        />
-      </View>
-      <View style={styles.inputContainer}>
-        <Text style={styles.inputLabel}>Confirm Password</Text>
-        <TextInput
-          style={styles.input}
-          placeholder="Confirm your password"
-          value={confirmPassword}
-          onChangeText={handleConfirmPasswordChange}
-          secureTextEntry={true}
-        />
-      </View>
+    <View style={styles.container}>
+      <ImageBackground source={backgroundImage} style={styles.backgroundImage}>
+        <View style={styles.containerText}>
+          <Text style={styles.registerLabel1}>Almost There!</Text>
+          <Text style={styles.registerLabel2}>
+            We are excited to see you here...
+          </Text>
+        </View>
+        <View style={styles.iconContainer}>
+          <Image
+            source={require("./user.png")}
+            style={{ width: 25, height: 25 }}
+          />
 
-      <TouchableOpacity style={styles.button} onPress={handleNextPress}>
-        <Text style={styles.buttonText}>Next</Text>
-      </TouchableOpacity>
+          <View style={styles.inputContainer}>
+            <TextInput
+              style={styles.input}
+              placeholder="Email"
+              value={email}
+              onChangeText={handleEmailChange}
+            />
+          </View>
+        </View>
+        <View style={styles.iconContainer}>
+          <Image
+            source={require("./lock.png")}
+            style={{ width: 25, height: 25 }}
+          />
+          <View style={styles.inputContainer}>
+            <TextInput
+              style={styles.input}
+              placeholder="Password"
+              value={password}
+              onChangeText={handlePasswordChange}
+              secureTextEntry={true}
+            />
+          </View>
+        </View>
+        <View style={styles.iconContainer}>
+          <Image
+            source={require("./lock.png")}
+            style={{ width: 25, height: 25 }}
+          />
+          <View style={styles.inputContainer}>
+            <TextInput
+              style={styles.input}
+              placeholder="Confirm Password"
+              value={confirmPassword}
+              onChangeText={handleConfirmPasswordChange}
+              secureTextEntry={true}
+            />
+          </View>
+        </View>
+        <View style={{ alignItems: "center", justifyContent: "center" }}>
+          <TouchableOpacity style={styles.button} onPress={handleNextPress}>
+            <Text style={styles.buttonText}>Next</Text>
+          </TouchableOpacity>
+        </View>
+      </ImageBackground>
     </View>
   );
 };
 
 const styles = StyleSheet.create({
+  backgroundImage: {
+    flex: 1,
+    width: "100%",
+    justifyContent: "center",
+    zIndex: -99,
+    resizeMode: "cover", // or "stretch" to stretch the image
+  },
   container: {
     flex: 1,
-    backgroundColor: "#fff",
+    backgroundColor: "#2B2B2B",
     alignItems: "center",
     justifyContent: "center",
-    paddingHorizontal: 20,
   },
   title: {
     fontSize: 24,
@@ -135,8 +169,14 @@ const styles = StyleSheet.create({
     alignSelf: "flex-start",
   },
   inputContainer: {
-    width: "100%",
+    width: 350,
     marginVertical: 8,
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  containerText: {
+    paddingLeft: 30,
+    margin: 20,
   },
   inputLabel: {
     fontSize: 16,
@@ -144,22 +184,45 @@ const styles = StyleSheet.create({
     marginBottom: 8,
   },
   input: {
-    width: "100%",
+    backgroundColor: "#fff",
+    width: "75%",
     height: 48,
+    marginVertical: 8,
     borderWidth: 1,
     borderColor: "#ccc",
-    borderRadius: 8,
+    borderRadius: 20,
     paddingHorizontal: 16,
+    marginLeft: -67,
   },
   button: {
-    backgroundColor: "#007AFF",
-    width: "100%",
+    backgroundColor: "#3273c1",
+    width: 300,
     height: 48,
-    borderRadius: 8,
+    borderRadius: 20,
     alignItems: "center",
     justifyContent: "center",
-    marginTop: 16,
+    marginTop: 50,
+    elevation: 8, // controls the shadow depth
+    shadowColor: "#4A90E2", // controls the shadow color
+    shadowOpacity: 0.8,
+    shadowRadius: 8,
+    shadowOffset: {
+      width: 0,
+      height: 0,
+    },
   },
+  registerLabel1: {
+    color: "#fff",
+    fontWeight: "bold",
+    fontSize: 30,
+  },
+  registerLabel2: {
+    color: "#fff",
+    fontWeight: "bold",
+    fontSize: 16,
+    paddingTop: 25,
+  },
+
   buttonText: {
     color: "#fff",
     fontWeight: "bold",
@@ -169,6 +232,12 @@ const styles = StyleSheet.create({
     color: "red",
     fontSize: 14,
     marginBottom: 8,
+  },
+  iconContainer: {
+    flexDirection: "row",
+    alignItems: "center",
+    // justifyContent: "center",
+    marginLeft: 47,
   },
 });
 export default RegisterPage;
