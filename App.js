@@ -19,7 +19,10 @@ export default function App() {
   return (
     <View style={styles.container}>
       <NavigationContainer style={{ flex: 1 }}>
-        <Stack.Navigator style={{ flex: 1 }}>
+        <Stack.Navigator style={{ flex: 1 }} screenOptions={{
+          headerShown: false,
+          animationEnabled: false // Set animationEnabled to false
+        }}>
           <Stack.Screen
             style={{ flex: 1 }}
             name="StartPage"
@@ -91,6 +94,8 @@ export default function App() {
             name="MainPage"
             component={MainPage}
             options={{
+              headerShown: false,
+
               headerStyle: {
                 backgroundColor: "#2B2B2B",
                 height: 100,
@@ -107,6 +112,7 @@ export default function App() {
             name="Statistic"
             component={Statistic}
             options={{
+              headerShown: false,
               headerStyle: {
                 backgroundColor: "#2B2B2B",
                 height: 100,

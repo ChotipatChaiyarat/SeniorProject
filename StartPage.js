@@ -79,7 +79,7 @@ const StartPage = () => {
           <Text style={styles.inputLabel}>Email</Text>
           <TextInput
             style={[styles.input, { width: 300, marginBottom:15 }]}
-            placeholder="Email"
+            placeholder="you@example.com"
             value={email}
             onChangeText={handleEmailChange}
           />
@@ -89,7 +89,7 @@ const StartPage = () => {
           <Text style={styles.inputLabel}>Password</Text>
           <TextInput
             style={[styles.input, { width: 300 }]}
-            placeholder="Enter your password"
+            placeholder="Enter 6 characters or more"
             value={password}
             onChangeText={handlePasswordChange}
             secureTextEntry={true}
