@@ -75,10 +75,10 @@ const StartPage = () => {
           style={{ width: 150, height: 192 }}
         />
 
-        <View style={styles.inputContainer}>
+        <View style={styles.inputContainer }>
           <Text style={styles.inputLabel}>Email</Text>
           <TextInput
-            style={[styles.input, { width: 300 }]}
+            style={[styles.input, { width: 300, marginBottom:15 }]}
             placeholder="Email"
             value={email}
             onChangeText={handleEmailChange}
@@ -101,7 +101,7 @@ const StartPage = () => {
         <TouchableOpacity onPress={handleRegisterPress}>
           <Text style={styles.registerText}>
             Don't have an account?{" "}
-            <Text style={{ color: "white", fontWeight: "bold" }}>
+            <Text style={{ color: "rgba(255,255,255,0.9)", textDecorationLine: "underline" }}>
               Register now
             </Text>
           </Text>
@@ -130,11 +130,6 @@ const styles = StyleSheet.create({
   inputLabel: {
     color: "white",
     fontWeight: "bold",
-  },
-  loginLabel: {
-    fontSize: 24,
-    fontWeight: "bold",
-    marginBottom: 24,
   },
   input: {
     backgroundColor: "#fff",
