@@ -71,7 +71,7 @@ function MainPage() {
         <TouchableOpacity
           style={styles.button}
           title="Self-cleaning"
-          onPress={updateThingSpeak}
+          onPress={lightUpdateThingSpeak}
         >
           <Text style={styles.buttonText}>Self-cleaning</Text>
         </TouchableOpacity>
@@ -79,7 +79,7 @@ function MainPage() {
         <TouchableOpacity
           style={styles.button}
           title="FindBottle"
-          onPress={testClick}
+          onPress={buzzerUpdateThingSpeak}
         >
           <Text style={styles.buttonText}>Find My Bottle</Text>
         </TouchableOpacity>
@@ -97,7 +97,7 @@ function MainPage() {
 }
 // const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
-// const updateThingSpeak = async (event) => {
+// const lightUpdateThingSpeak = async (event) => {
 //   const url = `https://api.thingspeak.com/update?api_key=IYKOBVGP6C4LAHU3&field2=100`;
 //   const url2 = `https://api.thingspeak.com/update?api_key=IYKOBVGP6C4LAHU3&field2=200`;
 
@@ -123,13 +123,30 @@ function MainPage() {
 //     });
 // };
 temp = 100;
-const updateThingSpeak = () => {
+const lightUpdateThingSpeak = () => {
   const url =
-    `https://api.thingspeak.com/update?api_key=IYKOBVGP6C4LAHU3&field2=` + temp;
+    `https://api.thingspeak.com/update?api_key=OJIMVVEWZSOFHMWG&field2=` + temp;
   temp = temp + 1;
   axios
     .post(url)
     .then((response) => {
+      console.log(temp - 1);
+      console.log("ThingSpeak update successful");
+    })
+    .catch((error) => {
+      console.log("ThingSpeak update failed: ", error);
+    });
+};
+
+temp2 = 100;
+const buzzerUpdateThingSpeak = () => {
+  const url =
+    `https://api.thingspeak.com/update?api_key=OJIMVVEWZSOFHMWG&field2=` + temp;
+  temp2 = temp2 + 1;
+  axios
+    .post(url)
+    .then((response) => {
+      console.log(temp2 - 1);
       console.log("ThingSpeak update successful");
     })
     .catch((error) => {
