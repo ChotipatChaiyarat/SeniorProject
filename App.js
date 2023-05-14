@@ -12,6 +12,7 @@ import SetGoalPage from "./SetGoalPage";
 
 import MainPage from "./MainPage";
 import Statistic from "./Statistic";
+import ProfilePage  from "./ProfilePage";
 
 const Stack = createStackNavigator();
 
@@ -117,6 +118,22 @@ export default function App() {
           <Stack.Screen
             name="Statistic"
             component={Statistic}
+            options={{
+              headerShown: false,
+              headerStyle: {
+                backgroundColor: "#2B2B2B",
+                height: 100,
+              },
+              headerTintColor: "#73AAFC",
+              headerTitleStyle: {
+                fontSize: 41,
+              },
+              headerTitle: "Aqualink", // set headerTitle to "Aqualink"
+            }}
+          />
+          <Stack.Screen
+            name="Profile"
+            component={ProfilePage}
             options={{
               headerShown: false,
               headerStyle: {

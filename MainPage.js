@@ -46,6 +46,9 @@ function MainPage() {
   const navigateToStatisticPage = () => {
     navigation.navigate("Statistic");
   };
+    const navigateToProfilePage = () => {
+    navigation.navigate("Profile");
+  };
 
   function power(base, exponent) {
     return Math.exp(Math.log(base) * exponent);
@@ -155,7 +158,7 @@ function MainPage() {
         <TouchableOpacity
           style={styles.footerButton}
           title="Profile"
-          onPress={navigateToStatisticPage}
+          onPress={navigateToProfilePage}
         >
           <View style={styles.iconContainer}>
             <Image style={styles.icon} source={require("./profile.png")} />
@@ -184,14 +187,13 @@ const lightUpdateThingSpeak = () => {
 
 temp2 = 100;
 const buzzerUpdateThingSpeak = () => {
-  const url =
-    `https://api.thingspeak.com/update?api_key=OJIMVVEWZSOFHMWG&field3=` +
-    temp2;
+  const url2 =
+    `https://api.thingspeak.com/update?api_key=OJIMVVEWZSOFHMWG&field3=` + 100;
   temp2 = temp2 + 1;
   axios
-    .post(url)
+    .post(url2)
     .then((response) => {
-      console.log(temp2 - 1);
+      console.log(url2);
       console.log("ThingSpeak update successful");
     })
     .catch((error) => {

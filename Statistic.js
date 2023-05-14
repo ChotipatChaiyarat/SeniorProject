@@ -17,6 +17,9 @@ function Statistic() {
   const navigateToMainPage = () => {
     navigation.navigate("MainPage");
   };
+  const navigateToProfilePage = () => {
+    navigation.navigate("Profile");
+  };
   const data = {
     labels: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],
     datasets: [
@@ -80,7 +83,7 @@ function Statistic() {
         <View style = {styles.iconContainer}><Image style={styles.icon} source={require("./statistics-click.png")}/>
         <Text style={[styles.iconText,{fontWeight:"bold"}]}>Statistics</Text></View>
       </TouchableOpacity>
-      <TouchableOpacity style={styles.footerButton} title="Profile">
+      <TouchableOpacity style={styles.footerButton} title="Profile" onPress={navigateToProfilePage}>
         <View style = {styles.iconContainer}><Image style={styles.icon} source={require("./profile.png")}/>
         <Text style={styles.iconText}>Profile</Text></View>
       </TouchableOpacity>
