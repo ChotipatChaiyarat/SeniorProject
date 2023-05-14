@@ -88,20 +88,45 @@ function Statistic() {
       </ImageBackground>
 
       <View style={styles.footer}>
-       <TouchableOpacity style={[styles.footerButton,styles.firstMenu]} title="Home" onPress={navigateToMainPage}>
-         <View style = {styles.iconContainer}><Image style={styles.icon} source={require("./home.png")}/>
-         <Text style={styles.iconText}>Home</Text></View>
-      </TouchableOpacity >
-      <TouchableOpacity style={[styles.footerButton,styles.firstMenu,{backgroundColor:"rgba(0,0,0,0.1)",borderRadius:15}]} title="Statistics">
-        <View style = {styles.iconContainer}><Image style={styles.icon} source={require("./statistics-click.png")}/>
-        <Text style={[styles.iconText,{fontWeight:"bold"}]}>Statistics</Text></View>
-      </TouchableOpacity>
-      <TouchableOpacity style={styles.footerButton} title="Profile">
-        <View style = {styles.iconContainer}><Image style={styles.icon} source={require("./profile.png")}/>
-        <Text style={styles.iconText}>Profile</Text></View>
-      </TouchableOpacity>
-    </View>
-
+        <TouchableOpacity
+          style={[styles.footerButton, styles.firstMenu]}
+          title="Home"
+          onPress={navigateToMainPage}
+        >
+          <View style={styles.iconContainer}>
+            <Image style={styles.icon} source={require("./home.png")} />
+            <Text style={styles.iconText}>Home</Text>
+          </View>
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={[
+            styles.footerButton,
+            styles.firstMenu,
+            { backgroundColor: "rgba(0,0,0,0.1)", borderRadius: 15 },
+          ]}
+          title="Statistics"
+        >
+          <View style={styles.iconContainer}>
+            <Image
+              style={styles.icon}
+              source={require("./statistics-click.png")}
+            />
+            <Text style={[styles.iconText, { fontWeight: "bold" }]}>
+              Statistics
+            </Text>
+          </View>
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={styles.footerButton}
+          title="Profile"
+          onPress={navigateToProfilePage}
+        >
+          <View style={styles.iconContainer}>
+            <Image style={styles.icon} source={require("./profile.png")} />
+            <Text style={styles.iconText}>Profile</Text>
+          </View>
+        </TouchableOpacity>
+      </View>
     </View>
   );
 }

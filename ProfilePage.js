@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import React, { useState } from "react";
+import { StyleSheet, Text, View } from "react-native";
 import {
   Pressable,
   Button,
@@ -9,89 +9,129 @@ import {
 } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 
-
 const backgroundImage = require("./lake.jpeg"); // replace with the path to your image
 
 export default function ProfilePage() {
-  const [firstName, setFirstName] = useState('John');
-  const [lastName, setLastName] = useState('Doe');
-  const [weight, setWeight] = useState('John');
-  const [height, setHeight] = useState('Doe');
-  const [sex, setSex] = useState('John');
-  const [age, setAge] = useState('Doe');
-  const [dailyGoal, setDailyGoal] = useState('John');
-  const [email, setEmail] = useState('Doe');
-  const [password, setPassword] = useState('Doe');
+  const [firstName, setFirstName] = useState("John");
+  const [lastName, setLastName] = useState("Doe");
+  const [weight, setWeight] = useState("John");
+  const [height, setHeight] = useState("Doe");
+  const [sex, setSex] = useState("John");
+  const [age, setAge] = useState("Doe");
+  const [dailyGoal, setDailyGoal] = useState("John");
+  const [email, setEmail] = useState("Doe");
+  const [password, setPassword] = useState("Doe");
 
   const navigation = useNavigation();
 
   const navigateToStatisticPage = () => {
     navigation.navigate("Statistic");
   };
-    const navigateToHomePage = () => {
-    navigation.navigate("MainPage");
+  const navigateToHomePage = () => {
+    navigation.navigate("MainPage", { firstName: "Peter", goal: 3.25 });
   };
 
   return (
     <View style={styles.container}>
-              <ImageBackground source={backgroundImage} style={styles.backgroundImage}>
-
-      <Text style={styles.title}>Profile</Text>
-      <View style={styles.infoContainer}>
-        <View style={styles.infoItem}>
-          <Text style={styles.label}>First Name:</Text>
-          <Text style={styles.value}>{firstName}</Text>
-          <Text style={styles.link} onPress={() => console.log('Change First Name')}>Change</Text>
+      <ImageBackground source={backgroundImage} style={styles.backgroundImage}>
+        <Text style={styles.title}>Profile</Text>
+        <View style={styles.infoContainer}>
+          <View style={styles.infoItem}>
+            <Text style={styles.label}>First Name:</Text>
+            <Text style={styles.value}>{firstName}</Text>
+            <Text
+              style={styles.link}
+              onPress={() => console.log("Change First Name")}
+            >
+              Change
+            </Text>
+          </View>
+          <View style={styles.infoItem}>
+            <Text style={styles.label}>Last Name:</Text>
+            <Text style={styles.value}>{lastName}</Text>
+            <Text
+              style={styles.link}
+              onPress={() => console.log("Change Last Name")}
+            >
+              Change
+            </Text>
+          </View>
+          <View style={styles.infoItem}>
+            <Text style={styles.label}>Weight:</Text>
+            <Text style={styles.value}>{weight}</Text>
+            <Text
+              style={styles.link}
+              onPress={() => console.log("Change Last Name")}
+            >
+              Change
+            </Text>
+          </View>
+          <View style={styles.infoItem}>
+            <Text style={styles.label}>Height:</Text>
+            <Text style={styles.value}>{height}</Text>
+            <Text
+              style={styles.link}
+              onPress={() => console.log("Change Last Name")}
+            >
+              Change
+            </Text>
+          </View>
+          <View style={styles.infoItem}>
+            <Text style={styles.label}>Sex:</Text>
+            <Text style={styles.value}>{sex}</Text>
+            <Text
+              style={styles.link}
+              onPress={() => console.log("Change Last Name")}
+            >
+              Change
+            </Text>
+          </View>
+          <View style={styles.infoItem}>
+            <Text style={styles.label}>Age:</Text>
+            <Text style={styles.value}>{age}</Text>
+            <Text
+              style={styles.link}
+              onPress={() => console.log("Change Last Name")}
+            >
+              Change
+            </Text>
+          </View>
+          <View style={styles.infoItem}>
+            <Text style={styles.label}>Daily Goal :</Text>
+            <Text style={styles.value}>{dailyGoal}</Text>
+            <Text
+              style={styles.link}
+              onPress={() => console.log("Change Last Name")}
+            >
+              Change
+            </Text>
+          </View>
+          <View style={styles.infoItem}>
+            <Text style={styles.label}>E-mail:</Text>
+            <Text style={styles.value}>{email}</Text>
+            <Text
+              style={styles.link}
+              onPress={() => console.log("Change Last Name")}
+            >
+              Change
+            </Text>
+          </View>
+          <View style={styles.infoItem}>
+            <Text style={styles.label}>Password:</Text>
+            <Text style={styles.value}>{password}</Text>
+            <Text
+              style={styles.link}
+              onPress={() => console.log("Change Last Name")}
+            >
+              Change
+            </Text>
+          </View>
         </View>
-        <View style={styles.infoItem}>
-          <Text style={styles.label}>Last Name:</Text>
-          <Text style={styles.value}>{lastName}</Text>
-          <Text style={styles.link} onPress={() => console.log('Change Last Name')}>Change</Text>
-        </View>
-        <View style={styles.infoItem}>
-          <Text style={styles.label}>Weight:</Text>
-          <Text style={styles.value}>{weight}</Text>
-          <Text style={styles.link} onPress={() => console.log('Change Last Name')}>Change</Text>
-        </View>
-        <View style={styles.infoItem}>
-          <Text style={styles.label}>Height:</Text>
-          <Text style={styles.value}>{height}</Text>
-          <Text style={styles.link} onPress={() => console.log('Change Last Name')}>Change</Text>
-        </View>
-        <View style={styles.infoItem}>
-          <Text style={styles.label}>Sex:</Text>
-          <Text style={styles.value}>{sex}</Text>
-          <Text style={styles.link} onPress={() => console.log('Change Last Name')}>Change</Text>
-        </View>
-        <View style={styles.infoItem}>
-          <Text style={styles.label}>Age:</Text>
-          <Text style={styles.value}>{age}</Text>
-          <Text style={styles.link} onPress={() => console.log('Change Last Name')}>Change</Text>
-        </View>
-        <View style={styles.infoItem}>
-          <Text style={styles.label}>Daily Goal :</Text>
-          <Text style={styles.value}>{dailyGoal}</Text>
-          <Text style={styles.link} onPress={() => console.log('Change Last Name')}>Change</Text>
-        </View>
-        <View style={styles.infoItem}>
-          <Text style={styles.label}>E-mail:</Text>
-          <Text style={styles.value}>{email}</Text>
-          <Text style={styles.link} onPress={() => console.log('Change Last Name')}>Change</Text>
-        </View>
-        <View style={styles.infoItem}>
-          <Text style={styles.label}>Password:</Text>
-          <Text style={styles.value}>{password}</Text>
-          <Text style={styles.link} onPress={() => console.log('Change Last Name')}>Change</Text>
-        </View>
-      </View>
       </ImageBackground>
 
       <View style={styles.footer}>
         <TouchableOpacity
-          style={[
-            styles.footerButton,
-            styles.firstMenu
-          ]}
+          style={[styles.footerButton, styles.firstMenu]}
           title="Home"
           onPress={navigateToHomePage}
         >
@@ -111,12 +151,20 @@ export default function ProfilePage() {
           </View>
         </TouchableOpacity>
         <TouchableOpacity
-          style={[styles.footerButton,{ backgroundColor: "rgba(0,0,0,0.1)", borderRadius: 15 }]}
+          style={[
+            styles.footerButton,
+            { backgroundColor: "rgba(0,0,0,0.1)", borderRadius: 15 },
+          ]}
           title="Profile"
         >
           <View style={styles.iconContainer}>
-            <Image style={styles.icon} source={require("./profile-click.png")} />
-            <Text style={[styles.iconText, { fontWeight: "bold" }]}>Profile</Text>
+            <Image
+              style={styles.icon}
+              source={require("./profile-click.png")}
+            />
+            <Text style={[styles.iconText, { fontWeight: "bold" }]}>
+              Profile
+            </Text>
           </View>
         </TouchableOpacity>
       </View>
@@ -125,7 +173,7 @@ export default function ProfilePage() {
 }
 
 const styles = StyleSheet.create({
-    backgroundImage: {
+  backgroundImage: {
     flex: 1,
     width: "100%",
     alignItems: "center",
@@ -135,35 +183,34 @@ const styles = StyleSheet.create({
   },
   container: {
     flex: 1,
-    alignItems: 'center',
-    justifyContent: 'top',
-    backgroundColor: '#fff',
-    
+    alignItems: "center",
+    justifyContent: "top",
+    backgroundColor: "#fff",
   },
   title: {
-    position:'relative',
-    top:-50,
-    color:'white',
+    position: "relative",
+    top: -50,
+    color: "white",
     fontSize: 24,
-    fontWeight: 'bold',
+    fontWeight: "bold",
   },
   infoContainer: {
-    position:'relative',
-    top:-30,
-    width: '100%',
+    position: "relative",
+    top: -30,
+    width: "100%",
     paddingHorizontal: 10,
   },
   infoItem: {
-    padding:18,
+    padding: 18,
     backgroundColor: "#f2f2f2",
-    borderRadius:20,
-    flexDirection: 'row',
-    alignItems: 'center',
+    borderRadius: 20,
+    flexDirection: "row",
+    alignItems: "center",
     marginBottom: 15,
   },
   label: {
     flex: 1,
-    fontWeight: 'bold',
+    fontWeight: "bold",
     marginRight: 10,
   },
   value: {
@@ -172,10 +219,10 @@ const styles = StyleSheet.create({
   },
   link: {
     flex: 1,
-    color: 'blue',
+    color: "blue",
     fontSize: 16,
-    textAlign: 'right',
-    textDecorationLine: 'underline',
+    textAlign: "right",
+    textDecorationLine: "underline",
   },
   buttonContainer: {
     alignItems: "center",
@@ -206,7 +253,7 @@ const styles = StyleSheet.create({
     height: 0,
     position: "absolute",
     bottom: 30,
-    width: "100%",
+    width: "95%",
     borderRadius: 20,
     padding: 45,
   },
@@ -227,5 +274,5 @@ const styles = StyleSheet.create({
   iconContainer: {
     flexDirection: "column",
     alignItems: "center",
-  }
+  },
 });
