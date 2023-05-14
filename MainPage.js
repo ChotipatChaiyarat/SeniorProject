@@ -76,39 +76,38 @@ const MainPage = ({ route }) => {
   return (
     <View style={styles.container}>
       <ImageBackground source={backgroundImage} style={styles.backgroundImage}>
-        <Text style={styles.welcome}>{"Welcome back, " + firstName}</Text>
+        <Text style={styles.welcome}>{"Welcome back, " + "Peter"}</Text>
 
         <View></View>
         <View>
           <View style={{ margin: 30, position: "relative", bottom: 40 }}>
             <ProgressCircle
-              percent={Math.round(
-                (calculateVolume(data) / (goal * 1000)) * 100
-              )}
+              percent={18}
               radius={150}
               borderWidth={30}
               color="#3273c1"
               bgColor="white"
             >
-              <Text style={{ fontSize: 18 }}>{"of the way"}</Text>
+              <Text style={{ fontSize: 18 }}>{"Your Daily Progress.."}</Text>
 
               <Text style={{ fontSize: 30 }}>
-                {Math.round((calculateVolume(data) / (goal * 1000)) * 100) +
+                {"0" +
                   " %"}
               </Text>
+              
             </ProgressCircle>
           </View>
         </View>
 
         <View style={styles.container1}>
           <View style={{ alignItems: "center" }}>
-            <Text style={styles.numbers}>{calculateVolume(data) + " ml"}</Text>
+            <Text style={styles.numbers}>{"0" + " ml"}</Text>
             <Text style={styles.explan}>NOW</Text>
           </View>
           <View style={styles.verticleLine}></View>
           <View style={{ alignItems: "center" }}>
             <Text style={styles.numbers}>
-              {Math.round(goal * 1000) + " ml"}
+              {"2400" + " ml"}
             </Text>
             <Text style={styles.explan}>GOAL</Text>
           </View>
@@ -197,7 +196,7 @@ const lightUpdateThingSpeak = () => {
 temp2 = 100;
 const buzzerUpdateThingSpeak = () => {
   const url2 =
-    `https://api.thingspeak.com/update?api_key=OJIMVVEWZSOFHMWG&field3=` + 100;
+    `https://api.thingspeak.com/update?api_key=OJIMVVEWZSOFHMWG&field3=` + temp2;
   temp2 = temp2 + 1;
   axios
     .post(url2)
