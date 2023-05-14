@@ -20,15 +20,32 @@ const goalReducer = (state, action) => {
 };
 const backgroundImage = require("./night2.jpeg"); // replace with the path to your image
 
+function calculateDailyIntake(value) {
+  dailyIntake = value * 0.035;
+  if (dailyIntake > 5) {
+    return 5;
+  } else if (dailyIntake < 1.5) {
+    return 1.5;
+  } else {
+    return dailyIntake;
+  }
+}
+
 const SetGoalPage = ({ route }) => {
   const navigation = useNavigation();
-  const { weight, height } = route.params;
+  const { weight, height, firstName } = route.params;
   console.log("weight=" + weight + "height =" + height);
 
-  const [dailyGoal, dispatch] = useReducer(goalReducer, 1.8);
+  const [dailyGoal, dispatch] = useReducer(
+    goalReducer,
+    calculateDailyIntake(weight)
+  );
 
   const handleFinishPress = () => {
-    navigation.navigate("MainPage");
+    navigation.navigate("MainPage", {
+      goal: calculateDailyIntake(weight),
+      firstName: firstName,
+    });
   };
 
   return (
