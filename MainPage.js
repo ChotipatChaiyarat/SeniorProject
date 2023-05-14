@@ -49,7 +49,7 @@ const MainPage = ({ route }) => {
   const navigateToStatisticPage = () => {
     navigation.navigate("Statistic");
   };
-    const navigateToProfilePage = () => {
+  const navigateToProfilePage = () => {
     navigation.navigate("Profile");
   };
 
@@ -338,7 +338,7 @@ const styles = StyleSheet.create({
     height: 0,
     position: "absolute",
     bottom: 30,
-    width: "90%",
+    width: "95%",
     borderRadius: 20,
     padding: 45,
   },
