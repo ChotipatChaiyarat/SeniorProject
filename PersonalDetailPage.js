@@ -98,7 +98,11 @@ const PersonalDetailPage = () => {
 
   const handleNextPress = () => {
     console.log("next press");
-    navigation.navigate("SetGoalPage", { weight: weight, height: height });
+    navigation.navigate("SetGoalPage", {
+      weight: weight,
+      height: height,
+      firstName: firstName,
+    });
   };
 
   return (
@@ -165,7 +169,6 @@ const PersonalDetailPage = () => {
                 placeholder="Enter your weight"
                 value={weight}
                 onChangeText={handleWeightChange}
-                keyboardType="numeric"
               />
             </View>
             <View style={styles.inputContainer}>
@@ -175,7 +178,6 @@ const PersonalDetailPage = () => {
                 placeholder="Enter your height"
                 value={height}
                 onChangeText={handleHeightChange}
-                keyboardType="numeric"
               />
               <TouchableOpacity style={styles.button} onPress={handleNextPress}>
                 <Text style={styles.buttonText}>Next</Text>

@@ -18,7 +18,9 @@ const THINGSPEAK_API_KEY = "OJIMVVEWZSOFHMWG";
 const CHANNEL_ID = "2075755";
 const FIELD_ID = "2";
 
-function MainPage() {
+const MainPage = ({ route }) => {
+  const { goal, firstName } = route.params;
+
   const [waterLevel, setWaterLevel] = useState(50); // Set initial water level
   const [data, setData] = useState(null);
 
@@ -32,6 +34,7 @@ function MainPage() {
         .then((response) => {
           setData(response.data.feeds[1].field1);
           console.log(response.data.feeds[1].field1);
+          console.log(calculateVolume(data));
         })
         .catch((error) => {
           console.log(error);
@@ -73,37 +76,43 @@ function MainPage() {
   return (
     <View style={styles.container}>
       <ImageBackground source={backgroundImage} style={styles.backgroundImage}>
-        <Text style={styles.welcome}>Welcome back, Win</Text>
+        <Text style={styles.welcome}>{"Welcome back, " + firstName}</Text>
 
         <View></View>
         <View>
           <View style={{ margin: 30, position: "relative", bottom: 40 }}>
             <ProgressCircle
-              percent={80}
+              percent={Math.round(
+                (calculateVolume(data) / (goal * 1000)) * 100
+              )}
               radius={150}
               borderWidth={30}
               color="#3273c1"
-              shadowColor="rgba(255,255,255,0.7)"
               bgColor="white"
             >
-              <Text style={{ fontSize: 30 }}>{calculateVolume(data)}</Text>
-              <Text style={{ fontSize: 18 }}>{"/ Day"}</Text>
+              <Text style={{ fontSize: 18 }}>{"of the way"}</Text>
+
+              <Text style={{ fontSize: 30 }}>
+                {Math.round((calculateVolume(data) / (goal * 1000)) * 100) +
+                  " %"}
+              </Text>
             </ProgressCircle>
           </View>
         </View>
 
         <View style={styles.container1}>
           <View style={{ alignItems: "center" }}>
-            <Text style={styles.numbers}>132 ml</Text>
+            <Text style={styles.numbers}>{calculateVolume(data) + " ml"}</Text>
             <Text style={styles.explan}>NOW</Text>
           </View>
           <View style={styles.verticleLine}></View>
           <View style={{ alignItems: "center" }}>
-            <Text style={styles.numbers}>750 ml</Text>
+            <Text style={styles.numbers}>
+              {Math.round(goal * 1000) + " ml"}
+            </Text>
             <Text style={styles.explan}>GOAL</Text>
           </View>
         </View>
-        <Text style={{ color: "white" }}>{data}</Text>
 
         <View
           style={{
@@ -168,7 +177,7 @@ function MainPage() {
       </View>
     </View>
   );
-}
+};
 temp = 100;
 const lightUpdateThingSpeak = () => {
   const url =

@@ -6,16 +6,19 @@ import {
   Pressable,
   TouchableOpacity,
   Image,
+  ImageBackground,
   Button,
 } from "react-native";
 import { BarChart } from "react-native-chart-kit";
 import StatisticBox from "./StatisticBox";
 import { useNavigation } from "@react-navigation/native";
 
+const backgroundImage = require("./lake.jpeg"); // replace with the path to your image
+
 function Statistic() {
   const navigation = useNavigation();
   const navigateToMainPage = () => {
-    navigation.navigate("MainPage");
+    navigation.navigate("MainPage", { firstName: "Win", goal: 3.25 });
   };
   const navigateToProfilePage = () => {
     navigation.navigate("Profile");
@@ -50,30 +53,40 @@ function Statistic() {
 
   return (
     <View style={styles.container}>
-      <View style={{ padding: 10, margin: 10 }}>
-        <BarChart
-          data={data}
-          width={320} // from react-native
-          height={250}
-          yAxisLabel="mL"
-          chartConfig={chartConfig}
-          verticalLabelRotation={0}
-          style={{
-            borderRadius: 10,
-            borderWidth: 5,
-            borderColor: "#488BF8",
-          }}
-        />
-      </View>
-      <View style={{ flexDirection: "row" }}>
-        <StatisticBox name="Total Intake" value="485" />
-        <StatisticBox name="Average Intake" value="500" />
-      </View>
-      <View style={{ flexDirection: "row" }}>
-        <StatisticBox name="Improvement" value="17%" />
-        <StatisticBox name="Cumulative score" value="40" />
-      </View>
-      
+      <ImageBackground source={backgroundImage} style={styles.backgroundImage}>
+        <Text style={styles.welcome}>{"Statistics"}</Text>
+
+        {/* <View style={{ padding: 10, margin: 10 }}> */}
+        <View>
+          <BarChart
+            data={data}
+            width={320} // from react-native
+            height={250}
+            yAxisLabel="mL"
+            chartConfig={chartConfig}
+            verticalLabelRotation={0}
+            style={{
+              borderRadius: 10,
+              borderWidth: 5,
+              borderColor: "#488BF8",
+            }}
+          />
+        </View>
+        <View style={{ flexDirection: "row", top: 10 }}>
+          <StatisticBox name="Total Intake" value="485" />
+          <View style={{ width: 15 }}></View>
+
+          <StatisticBox name="Average Intake" value="500" />
+        </View>
+        <View style={{ flexDirection: "row" }}>
+          <StatisticBox name="Improvement" value="17%" />
+          <View style={{ width: 15 }}></View>
+
+          <StatisticBox name="Cumulative Score" value="40" />
+        </View>
+        <View style={{ height: 50 }}></View>
+      </ImageBackground>
+
       <View style={styles.footer}>
        <TouchableOpacity style={[styles.footerButton,styles.firstMenu]} title="Home" onPress={navigateToMainPage}>
          <View style = {styles.iconContainer}><Image style={styles.icon} source={require("./home.png")}/>
@@ -83,7 +96,7 @@ function Statistic() {
         <View style = {styles.iconContainer}><Image style={styles.icon} source={require("./statistics-click.png")}/>
         <Text style={[styles.iconText,{fontWeight:"bold"}]}>Statistics</Text></View>
       </TouchableOpacity>
-      <TouchableOpacity style={styles.footerButton} title="Profile" onPress={navigateToProfilePage}>
+      <TouchableOpacity style={styles.footerButton} title="Profile">
         <View style = {styles.iconContainer}><Image style={styles.icon} source={require("./profile.png")}/>
         <Text style={styles.iconText}>Profile</Text></View>
       </TouchableOpacity>
@@ -94,12 +107,26 @@ function Statistic() {
 }
 
 const styles = StyleSheet.create({
+  backgroundImage: {
+    flex: 1,
+    width: "100%",
+    alignItems: "center",
+    justifyContent: "center",
+    zIndex: -99,
+    resizeMode: "stretch", // or "stretch" to stretch the image
+  },
+  welcome: {
+    fontSize: 25,
+    color: "white",
+    fontWeight: "bold",
+    position: "relative",
+    bottom: 20,
+  },
   container: {
     flex: 1,
     backgroundColor: "#2B2B2B",
     alignItems: "center",
     justifyContent: "center",
-    padding: 10,
   },
 
   button: {
@@ -122,29 +149,29 @@ const styles = StyleSheet.create({
     color: "white",
     fontWeight: "bold",
   },
-   icon:{
-    width: 25, 
+  icon: {
+    width: 25,
     height: 25,
-    marginBottom:7,
-    position:"relative",
-    top:1
+    marginBottom: 7,
+    position: "relative",
+    top: 1,
   },
-   iconText: {
+  iconText: {
     color: "black",
     fontSize: 15,
-    position:"relative",
-    top:1
+    position: "relative",
+    top: 1,
   },
   footer: {
-    flexDirection: 'row',
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#f2f2f2',
+    flexDirection: "row",
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: "#f2f2f2",
     height: 0,
-    position: 'absolute',
+    position: "absolute",
     bottom: 30,
-    width: '95%',
-    borderRadius:20,
+    width: "95%",
+    borderRadius: 20,
     padding: 45,
   },
   firstButton: {
@@ -161,10 +188,10 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
   },
-  iconContainer:{
-  flexDirection: "column",
-  alignItems:"center"
-  }
+  iconContainer: {
+    flexDirection: "column",
+    alignItems: "center",
+  },
 });
 
 export default Statistic;

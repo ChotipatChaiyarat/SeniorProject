@@ -53,7 +53,7 @@ const StartPage = () => {
   const handleLoginPress = () => {
     signInWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
-        navigation.navigate("MainPage");
+        navigation.navigate("MainPage", { firstName: "Win", goal: 3.25 });
 
         const user = userCredential.user;
       })
@@ -75,10 +75,10 @@ const StartPage = () => {
           style={{ width: 150, height: 192 }}
         />
 
-        <View style={styles.inputContainer }>
+        <View style={styles.inputContainer}>
           <Text style={styles.inputLabel}>Email</Text>
           <TextInput
-            style={[styles.input, { width: 300, marginBottom:15 }]}
+            style={[styles.input, { width: 300, marginBottom: 15 }]}
             placeholder="you@example.com"
             value={email}
             onChangeText={handleEmailChange}
@@ -101,7 +101,12 @@ const StartPage = () => {
         <TouchableOpacity onPress={handleRegisterPress}>
           <Text style={styles.registerText}>
             Don't have an account?{" "}
-            <Text style={{ color: "rgba(255,255,255,0.9)", textDecorationLine: "underline" }}>
+            <Text
+              style={{
+                color: "rgba(255,255,255,0.9)",
+                textDecorationLine: "underline",
+              }}
+            >
               Register now
             </Text>
           </Text>
